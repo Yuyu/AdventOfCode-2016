@@ -20,9 +20,9 @@ for instruction in data.split("\n"):
         screen[y] = screen[y][-num:] + screen[y][:-num]
     elif instruction.startswith("rotate column"):
         x, num = map(int, re.findall(r"(\d+) by (\d+)", instruction)[0])
-        screen = [list(i) for i in zip(*screen)] # transpose the screen
+        screen = map(list, zip(*screen)) # transpose the screen
         screen[x] = screen[x][-num:] + screen[x][:-num]
-        screen = [list(i) for i in zip(*screen)] # and turn it back
+        screen = map(list, zip(*screen)) # and turn it back
 
     sys.stdout.write("\033c")
     print "\n".join("".join(x for x in row) for row in screen)
