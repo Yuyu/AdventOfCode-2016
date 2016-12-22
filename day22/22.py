@@ -6,7 +6,7 @@ from itertools import permutations
 with open("input.txt", "r") as fp:
     data = fp.read().strip().splitlines()[2:]
 
-p1 = False
+p1 = True
 width, height = 37, 28
 
 nodes = np.ndarray((width, height), dtype=tuple)
@@ -26,13 +26,13 @@ if p1:
                 for y2 in xrange(height):
                     if x1 == x2 and y1 == y2:
                         continue
-                    if nodes[x2, y2][1] > nodes[x1, y1][0]:
+                    if (nodes[x2, y2][1] - nodes[x2, y2][0]) > nodes[x1, y1][0]:
                         pairs.add((x1, y1, x2, y2))
 
     print len(pairs)
 else:
     # Part 2 I did by hand with this printed out
-    # 14 + 25 + 28 + 5*36
+    # 14 + 25 + 28 + 5*35
     for y in xrange(height):
         for x in range(width):
             sys.stdout.write("{:3}/{:<3} ".format(*nodes[x, y]))
